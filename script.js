@@ -12,9 +12,71 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchClose = document.getElementById('searchClose');
     const searchInput = document.getElementById('searchInput');
 
+    // ----------------------------------------------------
+    // Mega Menu (Hamburger Menu Image 2) Toggle
+    // ----------------------------------------------------
+    const headerMenuBtn = document.getElementById('headerMenuBtn');
+    const megaMenuOverlay = document.getElementById('megaMenuOverlay');
+    const menuBars = document.querySelector('.menu-icon-bars');
+    const menuClose = document.querySelector('.menu-icon-close');
+
+    const toggleMegaMenu = (forceState) => {
+        if (!megaMenuOverlay || !headerMenuBtn) return;
+        const isOpen = forceState !== undefined ? forceState : !megaMenuOverlay.classList.contains('is-active');
+        if (isOpen) {
+            megaMenuOverlay.classList.add('is-active');
+            megaMenuOverlay.setAttribute('aria-hidden', 'false');
+            headerMenuBtn.classList.add('is-open');
+            headerMenuBtn.setAttribute('aria-expanded', 'true');
+            if (menuBars) menuBars.style.display = 'none';
+            if (menuClose) menuClose.style.display = 'block';
+            if (searchOverlay) searchOverlay.classList.remove('active');
+        } else {
+            megaMenuOverlay.classList.remove('is-active');
+            megaMenuOverlay.setAttribute('aria-hidden', 'true');
+            headerMenuBtn.classList.remove('is-open');
+            headerMenuBtn.setAttribute('aria-expanded', 'false');
+            if (menuBars) menuBars.style.display = 'block';
+            if (menuClose) menuClose.style.display = 'none';
+        }
+    };
+
+    if (headerMenuBtn && megaMenuOverlay) {
+        headerMenuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleMegaMenu();
+        });
+
+        // Fermer le méga-menu au clic en dehors
+        document.addEventListener('click', (e) => {
+            if (megaMenuOverlay.classList.contains('is-active') &&
+                !megaMenuOverlay.contains(e.target) &&
+                !headerMenuBtn.contains(e.target)) {
+                toggleMegaMenu(false);
+            }
+        });
+
+        // Fermer avec la touche Échap
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                toggleMegaMenu(false);
+                if (searchOverlay) searchOverlay.classList.remove('active');
+            }
+        });
+
+        // Fermer au clic sur un lien du méga menu
+        const megaLinks = megaMenuOverlay.querySelectorAll('a');
+        megaLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                toggleMegaMenu(false);
+            });
+        });
+    }
+
     if (searchBtn && searchOverlay) {
         searchBtn.addEventListener('click', (e) => {
             e.stopPropagation();
+            toggleMegaMenu(false); // Ferme le méga-menu si ouvert
             searchOverlay.classList.toggle('active');
             if (searchOverlay.classList.contains('active')) {
                 searchInput.focus();

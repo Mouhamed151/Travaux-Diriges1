@@ -98,14 +98,14 @@ button {
 }
 
 .header-container {
-    max-width: 1440px;
-    margin: 0 auto;
-    padding: 0 24px;
+    width: 100%;
+    margin: 0;
+    padding: 0 0 0 20px;
     height: 72px;
     display: flex;
     align-items: stretch;
     justify-content: space-between;
-    gap: 12px;
+    gap: 8px;
 }
 
 /* Logo Group */
@@ -113,7 +113,7 @@ button {
     display: flex;
     align-items: center;
     flex-shrink: 0;
-    padding-right: 12px;
+    padding-right: 14px;
 }
 
 .brand-link {
@@ -125,7 +125,7 @@ button {
 .brand-image-logo {
     height: 48px;
     width: auto;
-    max-width: 260px;
+    max-width: 250px;
     object-fit: contain;
     display: block;
 }
@@ -176,6 +176,7 @@ button {
     display: flex;
     height: 100%;
     align-items: stretch;
+    flex-shrink: 1;
 }
 
 .nav-list {
@@ -183,6 +184,9 @@ button {
     height: 100%;
     align-items: stretch;
     gap: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
 
 .nav-item {
@@ -195,104 +199,109 @@ button {
 .nav-link {
     display: flex;
     align-items: center;
-    gap: 6px;
-    padding: 0 14px;
+    gap: 5px;
+    padding: 0 11px;
     height: 100%;
     font-family: 'Montserrat', sans-serif;
-    font-size: 11.5px;
+    font-size: 11px;
     font-weight: 800;
     color: #111827;
     text-transform: uppercase;
-    letter-spacing: 0.3px;
-    transition: var(--transition-fast);
+    letter-spacing: 0.2px;
+    white-space: nowrap;
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+@media (min-width: 1360px) {
+    .nav-link {
+        padding: 0 13px;
+        font-size: 11.5px;
+    }
 }
 
 .nav-arrow {
-    transition: transform 0.25s ease;
+    transition: transform 0.25s ease, color 0.25s ease;
 }
 
-.nav-item:hover .nav-arrow {
-    transform: rotate(180deg);
-}
-
-.nav-item:hover > .nav-link {
-    color: var(--unchk-teal);
-    background-color: #f8fafc;
-}
-
-/* ACCUEIL Block (Plein fond bleu) */
-.nav-block-blue .nav-link-blue {
+/* Menu Actif : ACCUEIL en bleu plein fond */
+.nav-item.active-nav .nav-link,
+.nav-item.nav-block-blue .nav-link-blue {
     background-color: #007ba2;
     color: #ffffff;
     font-weight: 800;
-    padding: 0 24px;
+    padding: 0 18px;
 }
 
-.nav-block-blue:hover .nav-link-blue {
-    background-color: #006383;
+.nav-item.active-nav:hover .nav-link {
+    background-color: #00688a;
     color: #ffffff;
 }
 
-/* INSTITUTION Block (Plein fond jaune/or) */
-.nav-block-yellow .nav-link-yellow {
-    background-color: #f5b335;
-    color: #ffffff;
-    font-weight: 800;
-    padding: 0 20px;
-    gap: 8px;
-}
-
-.nav-block-yellow:hover .nav-link-yellow {
-    background-color: #e09b1f;
+/* Au survol / scroll : N'importe quel menu prend un fond jaune/or plein avec texte blanc (Image 1) */
+.nav-item:not(.active-nav):hover > .nav-link {
+    background-color: #f5af26;
     color: #ffffff;
 }
 
-/* Institution Dropdown Menu */
-.institution-dropdown {
+.nav-item:not(.active-nav):hover .nav-arrow {
+    color: #ffffff;
+    transform: rotate(180deg);
+}
+
+/* Dropdowns génériques et fidèles à l'image 1 */
+.dropdown-menu {
     position: absolute;
     top: 100%;
     left: 0;
     background-color: #ffffff;
-    min-width: 250px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.14);
-    border: 1px solid #fed7aa;
+    min-width: 260px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+    border: 1px solid #eddca5;
     border-top: none;
     padding: 0;
     opacity: 0;
     visibility: hidden;
-    transform: translateY(6px);
-    transition: var(--transition-fast);
+    transform: translateY(4px);
+    transition: all 0.2s ease;
     z-index: 1001;
+    list-style: none;
 }
 
-.nav-item:hover .institution-dropdown {
+/* Sous-menu Vie étudiante (Fidèle à l'Image 1) */
+.dropdown-menu.student-dropdown {
+    min-width: 320px;
+}
+
+.nav-item:hover > .dropdown-menu {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
 }
 
-.institution-dropdown li {
-    border-bottom: 1px solid #f5b335;
+.dropdown-menu li {
+    border-bottom: 1px solid #e8dbb0;
 }
 
-.institution-dropdown li:last-child {
+.dropdown-menu li:last-child {
     border-bottom: none;
 }
 
-.institution-dropdown li a {
+.dropdown-menu li a {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 13px 20px;
     font-size: 13.5px;
-    font-weight: 600;
-    color: #1e293b;
-    transition: var(--transition-fast);
+    font-weight: 500;
+    color: #263238;
+    text-decoration: none;
+    transition: background-color 0.15s ease, color 0.15s ease, padding-left 0.15s ease;
 }
 
-.institution-dropdown li a:hover {
-    background-color: #fff9ee;
-    color: #d98200;
+.dropdown-menu li a:hover {
+    background-color: #fff9ed;
+    color: #d97706;
     padding-left: 24px;
 }
 
@@ -310,64 +319,33 @@ button {
 
 .has-sub-arrow:hover svg {
     transform: translateX(3px);
-    color: #d98200;
-}
-
-/* Generic Dropdowns */
-.dropdown-menu:not(.institution-dropdown) {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: var(--bg-white);
-    min-width: 230px;
-    box-shadow: var(--shadow-lg);
-    border-radius: 0 0 6px 6px;
-    border: 1px solid var(--border-light);
-    padding: 8px 0;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(6px);
-    transition: var(--transition-fast);
-    z-index: 1001;
-}
-
-.nav-item:hover .dropdown-menu:not(.institution-dropdown) {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-}
-
-.dropdown-menu:not(.institution-dropdown) li a {
-    display: block;
-    padding: 9px 18px;
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--text-primary);
-    transition: var(--transition-fast);
-}
-
-.dropdown-menu:not(.institution-dropdown) li a:hover {
-    background-color: var(--unchk-teal-light);
-    color: var(--unchk-teal);
-    padding-left: 22px;
+    color: #d97706;
 }
 
 /* Header Utilities (Right side) */
 .header-utilities {
     display: flex;
-    align-items: center;
-    gap: 16px;
+    align-items: stretch;
+    margin-left: auto;
     flex-shrink: 0;
+    gap: 0;
 }
 
-/* Bouton MENU avec cercle bleu hamburger */
+/* Bouton MENU avec cercle bleu hamburger (Image 2) */
 .menu-action-group {
     display: flex;
     align-items: center;
     gap: 8px;
     cursor: pointer;
-    background: none;
-    padding: 4px;
+    background: transparent;
+    border: none;
+    padding: 0 16px;
+    height: 72px;
+    transition: background-color 0.2s ease;
+}
+
+.menu-action-group:hover {
+    background-color: #f8fafc;
 }
 
 .menu-label-text {
@@ -379,38 +357,51 @@ button {
 }
 
 .menu-blue-circle {
-    width: 36px;
-    height: 36px;
+    width: 38px;
+    height: 38px;
     border-radius: 50%;
     background-color: #007ba2;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: var(--transition-fast);
+    transition: all 0.2s ease;
     box-shadow: 0 2px 6px rgba(0, 123, 162, 0.3);
 }
 
-.menu-action-group:hover .menu-blue-circle {
-    background-color: #006282;
-    transform: scale(1.06);
+.menu-action-group:hover .menu-blue-circle,
+.menu-action-group.is-open .menu-blue-circle {
+    background-color: #005d7b;
+    transform: scale(1.05);
 }
 
-/* Bouton Recherche Cercle Jaune */
-.util-search-round {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    background-color: #f5b335;
+/* Bloc Bleu Pinned à droite avec Bouton Recherche (Image 2 - toujours visible à l'extrême droite) */
+.header-search-box {
+    background-color: #007ba2;
+    height: 72px;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: var(--transition-fast);
-    box-shadow: 0 2px 6px rgba(245, 179, 53, 0.3);
+    padding: 0 20px;
+    flex-shrink: 0;
+}
+
+.util-search-round {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background-color: #f5af26;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 6px rgba(245, 175, 38, 0.4);
 }
 
 .util-search-round:hover {
-    background-color: #e09b1f;
-    transform: scale(1.06);
+    background-color: #e09818;
+    transform: scale(1.08);
 }
 
 /* Mobile Hamburger Toggle */
@@ -419,6 +410,175 @@ button {
     font-size: 22px;
     color: var(--unchk-teal);
     padding: 6px 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* Sous-barre Header avec lien CONTACT (Image 1 et 2) */
+.header-sub-bar {
+    width: 100%;
+    background-color: #ffffff;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.header-sub-container {
+    padding: 6px 24px 8px 24px;
+    display: flex;
+    align-items: center;
+}
+
+.header-contact-link {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    color: #111827;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.header-contact-link:hover {
+    color: #007ba2;
+}
+
+/* ==============================================
+   MEGA MENU OVERLAY (IMAGE 2)
+=============================================== */
+.mega-menu-overlay {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #ffffff;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.16);
+    border-top: 1px solid #e2e8f0;
+    z-index: 998;
+    display: none;
+    animation: megaSlideDown 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mega-menu-overlay.is-active {
+    display: block;
+}
+
+@keyframes megaSlideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.mega-menu-wrapper {
+    width: 100%;
+}
+
+.mega-menu-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.25fr 1fr;
+    min-height: 380px;
+}
+
+.mega-column {
+    padding: 36px 40px;
+}
+
+.mega-col-eno {
+    border-right: 1px solid #f1f5f9;
+}
+
+.mega-col-comm {
+    border-right: 1px solid #f1f5f9;
+}
+
+.mega-col-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    color: #111827;
+    margin-bottom: 22px;
+}
+
+.mega-col-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.mega-col-links li {
+    border-bottom: 1px solid #e8edf3;
+}
+
+.mega-col-links li a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    font-size: 14.5px;
+    font-weight: 600;
+    color: #1e293b;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.mega-arrow {
+    font-size: 13px;
+    font-weight: 800;
+    color: #1e293b;
+    transition: transform 0.2s ease;
+}
+
+.mega-col-links li a:hover {
+    color: #007ba2;
+    padding-left: 6px;
+}
+
+.mega-col-links li a:hover .mega-arrow {
+    color: #007ba2;
+    transform: translateX(3px);
+}
+
+/* Colonne 3 : Plateformes (Fond Orange / Ambre - Image 2) */
+.mega-col-platforms {
+    background-color: #dd7e0f;
+    padding: 36px 44px;
+}
+
+.mega-col-title.platforms-heading {
+    color: #111827;
+    font-size: 20px;
+    font-weight: 800;
+    margin-bottom: 22px;
+}
+
+.platforms-links li {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.platforms-links li a {
+    color: #ffffff;
+    font-size: 14.5px;
+    font-weight: 600;
+}
+
+.platforms-links .mega-arrow {
+    color: #ffffff;
+}
+
+.platforms-links li a:hover {
+    color: #ffffff;
+    padding-left: 6px;
+    opacity: 0.88;
+}
+
+.platforms-links li a:hover .mega-arrow {
+    color: #ffffff;
+    transform: translateX(3px);
 }
 
 /* Search Bar Dropdown Overlay */
@@ -1474,6 +1634,21 @@ button {
 
     .main-nav.mobile-active .nav-item.open-sub .dropdown-menu {
         display: block;
+    }
+
+    /* Mega Menu Responsive (Mobile / Tablette) */
+    .mega-menu-grid {
+        grid-template-columns: 1fr;
+        min-height: auto;
+    }
+
+    .mega-col-eno, .mega-col-comm {
+        border-right: none;
+        border-bottom: 1px solid #f1f5f9;
+    }
+
+    .mega-column {
+        padding: 24px 20px;
     }
 
     .news-grid {
