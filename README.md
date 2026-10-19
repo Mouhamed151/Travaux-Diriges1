@@ -37,4 +37,3 @@ TD1 Home Page UNCHK/
 - **Actualités & Communiqués officiels** (Cheikh Hamidou Kane, Pr Samad Ouya)
 - **UN-CHK en chiffres** : Cartes statistiques harmonisées avec les photos officielles
 - **Vie estudiantine & Footer complet**
->>>>>>> 2d1f193 (Initial commit: TD1 Home Page UNCHK - Intégration complète fidèle en HTML, CSS, JS)
