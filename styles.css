@@ -783,103 +783,111 @@ button {
    QUICK ACTION CARDS: NOS FORMATIONS & ADMISSION
    ========================================================================== */
 .quick-actions-section {
-    background-color: var(--bg-white);
+    background-color: #f9f9f9;
+    padding: 0 20px;
+    position: relative;
+    z-index: 5;
 }
 
 .action-cards-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    transform: translateY(-10px);
 }
 
 .action-card {
-    padding: 34px 44px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    color: var(--bg-white);
-    transition: var(--transition-fast);
     position: relative;
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    align-items: center;
+    min-height: 230px;
+    padding: 0 40px 0 36px;
+    text-decoration: none;
     overflow: hidden;
-}
-
-.action-card::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.08);
-    opacity: 0;
-    transition: var(--transition-fast);
-}
-
-.action-card:hover::after {
-    opacity: 1;
+    transition: background-color 0.25s ease, filter 0.25s ease;
 }
 
 .card-orange {
-    background-color: var(--unchk-orange);
+    background-color: #f39220;
+    color: #2b2b2b;
 }
 
 .card-orange:hover {
-    background-color: var(--unchk-orange-dark);
+    background-color: #e8850f;
 }
 
 .card-blue {
-    background-color: var(--unchk-blue);
+    background-color: #0077b6;
+    color: #ffffff;
 }
 
 .card-blue:hover {
-    background-color: var(--unchk-blue-dark);
+    background-color: #006aa3;
 }
 
-.card-left {
-    display: flex;
-    align-items: center;
-    gap: 20px;
+.card-orange .card-icon {
+    color: #ffffff;
 }
 
 .card-icon {
-    font-size: 32px;
+    display: flex;
+    align-items: center;
+    margin-top: -18px;
 }
 
 .card-title {
-    font-family: 'Outfit', sans-serif;
-    font-size: 22px;
-    font-weight: 800;
-    letter-spacing: 1px;
+    font-family: 'Rubik', 'Outfit', sans-serif;
+    font-size: 21px;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+    text-transform: uppercase;
+    padding-left: 28px;
+    margin-top: -18px;
 }
 
 .card-arrow {
-    font-size: 20px;
+    position: absolute;
+    right: 44px;
+    top: 50%;
+    margin-top: 26px;
+    display: flex;
     transition: transform 0.25s ease;
 }
 
-.action-card:hover .card-arrow {
-    transform: translateX(8px);
+.card-orange .card-arrow {
+    color: #2b2b2b;
 }
 
-/* Secondary Tabs / Pills */
+.action-card:hover .card-arrow {
+    transform: translateX(6px);
+}
+
+/* Liens secondaires : Vision / Valeurs / Axes Stratégiques */
 .sub-nav-links {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
-    padding: 22px 24px;
-    display: flex;
+    padding: 34px 0 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1.6fr;
     align-items: center;
-    justify-content: center;
-    gap: 36px;
 }
 
 .sub-link {
-    font-family: 'Outfit', sans-serif;
+    justify-self: center;
+    font-family: 'Rubik', 'Outfit', sans-serif;
     font-size: 16px;
-    font-weight: 700;
-    color: #1e293b;
+    font-weight: 600;
+    color: #2b2b2b;
     position: relative;
     padding-bottom: 4px;
+    text-decoration: none;
+    transition: color 0.2s ease;
 }
+
+.sub-link:nth-child(1) { justify-self: center; transform: translateX(10px); }
+.sub-link:nth-child(2) { justify-self: end; }
 
 .sub-link::after {
     content: '';
@@ -888,23 +896,40 @@ button {
     left: 0;
     width: 0%;
     height: 2px;
-    background-color: var(--unchk-yellow);
-    transition: var(--transition-fast);
+    background-color: #f39220;
+    transition: width 0.25s ease;
 }
 
 .sub-link:hover {
-    color: var(--unchk-orange);
+    color: #f39220;
 }
 
 .sub-link:hover::after {
     width: 100%;
 }
 
-.sub-separator {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background-color: #cbd5e1;
+@media (max-width: 768px) {
+    .action-card {
+        min-height: 150px;
+        grid-template-columns: 60px 1fr;
+        padding: 0 24px;
+    }
+    .card-title {
+        padding-left: 12px;
+        font-size: 18px;
+    }
+    .card-arrow {
+        right: 24px;
+    }
+    .sub-nav-links {
+        grid-template-columns: 1fr;
+        gap: 14px;
+        padding: 24px 0;
+    }
+    .sub-link:nth-child(n) {
+        justify-self: center;
+        transform: none;
+    }
 }
 
 /* ==========================================================================
