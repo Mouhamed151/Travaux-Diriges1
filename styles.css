@@ -100,7 +100,7 @@ button {
 .header-container {
     width: 100%;
     margin: 0;
-    padding: 0 0 0 20px;
+    padding: 0 24px;
     height: 72px;
     display: flex;
     align-items: stretch;
@@ -335,13 +335,12 @@ button {
 /* Header Utilities (Right side) */
 .header-utilities {
     display: flex;
-    align-items: stretch;
+    align-items: center;
     margin-left: auto;
     flex-shrink: 0;
-    gap: 0;
 }
 
-/* Bouton MENU avec cercle bleu hamburger (Image 2) */
+/* Bouton MENU avec cercle bleu hamburger (Fidèle à l'image 1 de www.unchk.sn) */
 .menu-action-group {
     display: flex;
     align-items: center;
@@ -349,7 +348,7 @@ button {
     cursor: pointer;
     background: transparent;
     border: none;
-    padding: 0 16px;
+    padding: 0 4px;
     height: 72px;
     transition: background-color 0.2s ease;
 }
@@ -384,36 +383,6 @@ button {
     transform: scale(1.05);
 }
 
-/* Bloc Bleu Pinned à droite avec Bouton Recherche (Image 2 - toujours visible à l'extrême droite) */
-.header-search-box {
-    background-color: #007ba2;
-    height: 72px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 20px;
-    flex-shrink: 0;
-}
-
-.util-search-round {
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    background-color: #f5af26;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    box-shadow: 0 2px 6px rgba(245, 175, 38, 0.4);
-}
-
-.util-search-round:hover {
-    background-color: #e09818;
-    transform: scale(1.08);
-}
-
 /* Mobile Hamburger Toggle */
 .mobile-menu-btn {
     display: none;
@@ -423,34 +392,6 @@ button {
     background: none;
     border: none;
     cursor: pointer;
-}
-
-/* Sous-barre Header avec lien CONTACT (Image 1 et 2) */
-.header-sub-bar {
-    width: 100%;
-    background-color: #ffffff;
-    border-bottom: 1px solid #f1f5f9;
-}
-
-.header-sub-container {
-    padding: 6px 24px 8px 24px;
-    display: flex;
-    align-items: center;
-}
-
-.header-contact-link {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 13px;
-    font-weight: 800;
-    color: #111827;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    text-decoration: none;
-    transition: color 0.2s ease;
-}
-
-.header-contact-link:hover {
-    color: #007ba2;
 }
 
 /* ==============================================
