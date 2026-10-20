@@ -90,12 +90,36 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Close search on click outside
+    // Fermer la recherche au clic à l'extérieur
     document.addEventListener('click', (e) => {
-        if (searchOverlay && searchOverlay.classList.contains('active') && !searchOverlay.contains(e.target) && e.target !== searchBtn) {
+        if (searchOverlay && searchOverlay.classList.contains('active') && !searchOverlay.contains(e.target) && !searchBtn.contains(e.target)) {
             searchOverlay.classList.remove('active');
         }
     });
+
+    // Gestion de la touche Entrée et clic sur l'icône de recherche
+    const searchIconSubmit = document.querySelector('.unchk-search-icon');
+    const executeSearch = () => {
+        const query = searchInput ? searchInput.value.trim() : '';
+        if (query) {
+            console.log('Recherche UNCHK :', query);
+            // Redirige ou filtre selon le besoin
+            window.location.hash = '#formations';
+            searchOverlay.classList.remove('active');
+        }
+    };
+
+    if (searchIconSubmit) {
+        searchIconSubmit.addEventListener('click', executeSearch);
+    }
+    if (searchInput) {
+        searchInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                executeSearch();
+            }
+        });
+    }
 
     // ----------------------------------------------------
     // 2. Mobile Menu Navigation Toggle
