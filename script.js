@@ -1,19 +1,18 @@
 /**
  * UN-CHK (Université numérique Cheikh Hamidou KANE)
- * Homepage Interactivity & Micro-animations
+ * Interactivité et micro-animations de la page d'accueil
  */
 
 document.addEventListener('DOMContentLoaded', () => {
     // ----------------------------------------------------
-    // 1. Search Overlay Open & Close
+    // 1. Ouverture et fermeture de la barre de recherche
     // ----------------------------------------------------
     const searchBtn = document.getElementById('searchBtn');
     const searchOverlay = document.getElementById('searchOverlay');
-    const searchClose = document.getElementById('searchClose');
     const searchInput = document.getElementById('searchInput');
 
     // ----------------------------------------------------
-    // Mega Menu (Hamburger Menu Image 2) Toggle
+    // Ouverture / fermeture du méga-menu (bouton MENU)
     // ----------------------------------------------------
     const headerMenuBtn = document.getElementById('headerMenuBtn');
     const megaMenuOverlay = document.getElementById('megaMenuOverlay');
@@ -84,12 +83,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    if (searchClose && searchOverlay) {
-        searchClose.addEventListener('click', () => {
-            searchOverlay.classList.remove('active');
-        });
-    }
-
     // Fermer la recherche au clic à l'extérieur
     document.addEventListener('click', (e) => {
         if (searchOverlay && searchOverlay.classList.contains('active') && !searchOverlay.contains(e.target) && !searchBtn.contains(e.target)) {
@@ -122,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ----------------------------------------------------
-    // 2. Mobile Menu Navigation Toggle
+    // 2. Menu de navigation mobile (hamburger)
     // ----------------------------------------------------
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const mainNav = document.getElementById('mainNav');
@@ -133,12 +126,12 @@ document.addEventListener('DOMContentLoaded', () => {
             mobileMenuBtn.classList.toggle('is-open');
         });
 
-        // Dropdown toggle on mobile
+        // Ouverture des sous-menus sur mobile
         const dropdownItems = mainNav.querySelectorAll('.has-dropdown');
         dropdownItems.forEach(item => {
             const link = item.querySelector('.nav-link');
             link.addEventListener('click', (e) => {
-                if (window.innerWidth <= 1024) {
+                if (window.innerWidth <= 991) {
                     e.preventDefault();
                     item.classList.toggle('open-sub');
                 }
@@ -147,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ----------------------------------------------------
-    // 3. Hero Carousel Full-Width Multi-Slide Navigation
+    // 3. Carrousel pleine largeur (diapositives du hero)
     // ----------------------------------------------------
     const slides = document.querySelectorAll('.hero-slide');
     const dots = document.querySelectorAll('.slider-dot');
@@ -184,7 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
         dot.addEventListener('click', (e) => {
             e.stopPropagation();
             showSlide(idx);
-            resetAutoSlide();
+            startAutoSlide();
         });
     });
 
@@ -193,7 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
         heroPrev.addEventListener('click', (e) => {
             e.stopPropagation();
             showSlide(currentSlide - 1);
-            resetAutoSlide();
+            startAutoSlide();
         });
     }
 
@@ -201,23 +194,19 @@ document.addEventListener('DOMContentLoaded', () => {
         heroNext.addEventListener('click', (e) => {
             e.stopPropagation();
             showSlide(currentSlide + 1);
-            resetAutoSlide();
+            startAutoSlide();
         });
     }
 
-    // Défilement automatique toutes les 5 secondes
-    const startAutoSlide = () => {
+    // Défilement automatique toutes les 5 secondes (relancé après chaque interaction)
+    function startAutoSlide() {
         if (autoSlideTimer) clearInterval(autoSlideTimer);
         if (slides.length > 1) {
             autoSlideTimer = setInterval(() => {
                 showSlide(currentSlide + 1);
             }, 5000);
         }
-    };
-
-    const resetAutoSlide = () => {
-        startAutoSlide();
-    };
+    }
 
     startAutoSlide();
 
@@ -233,7 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ----------------------------------------------------
-    // 4. Smooth Back to Top
+    // 4. Retour en haut de page avec défilement fluide
     // ----------------------------------------------------
     const backToTop = document.getElementById('backToTop');
     if (backToTop) {
@@ -247,23 +236,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ----------------------------------------------------
-    // 5. Language Switcher Toggle
-    // ----------------------------------------------------
-    const langToggle = document.getElementById('langToggle');
-    if (langToggle) {
-        let currentLang = 'FR';
-        langToggle.addEventListener('click', () => {
-            currentLang = currentLang === 'FR' ? 'EN' : 'FR';
-            langToggle.setAttribute('title', `Langue actuelle: ${currentLang}`);
-            langToggle.style.transform = 'rotate(180deg)';
-            setTimeout(() => {
-                langToggle.style.transform = 'none';
-            }, 300);
-        });
-    }
-
-    // ----------------------------------------------------
-    // 6. Number Counter Animation for Statistics
+    // 5. Animation des compteurs de statistiques
     // ----------------------------------------------------
     const statCards = document.querySelectorAll('.stat-big-number');
     let animated = false;
@@ -272,7 +245,6 @@ document.addEventListener('DOMContentLoaded', () => {
         statCards.forEach(stat => {
             const target = parseInt(stat.getAttribute('data-target'), 10);
             if (!isNaN(target)) {
-                let start = 0;
                 const duration = 1200;
                 const startTime = performance.now();
 
@@ -283,6 +255,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     
                     if (target === 1) {
                         stat.textContent = `${value}ère`;
+                    } else if (target > 1000) {
+                        stat.textContent = value.toLocaleString('fr-FR');
                     } else {
                         stat.textContent = value;
                     }
@@ -290,7 +264,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (progress < 1) {
                         requestAnimationFrame(updateCount);
                     } else {
-                        stat.textContent = target === 1 ? '1ère' : target;
+                        if (target === 1) {
+                            stat.textContent = '1ère';
+                        } else if (target > 1000) {
+                            stat.textContent = target.toLocaleString('fr-FR');
+                        } else {
+                            stat.textContent = target;
+                        }
                     }
                 };
 
@@ -314,7 +294,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ----------------------------------------------------
-    // 7. Dynamic Active Menu on Click & Scrollspy
+    // 6. Menu actif au clic et suivi du défilement (scrollspy)
     // ----------------------------------------------------
     const allNavItems = document.querySelectorAll('.nav-item');
     const scrollMap = [
@@ -344,14 +324,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Fermer les dropdowns ouverts au clic à l'extérieur
+    // Fermer les sous-menus ouverts au clic à l'extérieur
     document.addEventListener('click', (e) => {
         if (!e.target.closest('.nav-item')) {
             allNavItems.forEach(i => i.classList.remove('hover-open'));
         }
     });
 
-    // Scrollspy : Met à jour dynamiquement l'onglet actif (bleu) pendant le scroll
+    // Scrollspy : met à jour l'onglet actif (bleu) pendant le défilement
     let isScrolling = false;
     window.addEventListener('scroll', () => {
         if (!isScrolling) {
