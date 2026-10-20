@@ -288,4 +288,76 @@ document.addEventListener('DOMContentLoaded', () => {
 
         observer.observe(statsSection);
     }
+
+    // ----------------------------------------------------
+    // 7. Dynamic Active Menu on Click & Scrollspy
+    // ----------------------------------------------------
+    const allNavItems = document.querySelectorAll('.nav-item');
+    const scrollMap = [
+        { id: 'top', index: 0 },              // ACCUEIL
+        { id: 'en-chiffres', index: 1 },      // INSTITUTION
+        { id: 'formations', index: 2 },       // FORMATIONS
+        { id: 'actualites', index: 3 },       // ACTUALITÉS
+        { id: 'hero', index: 4 },             // RECHERCHE
+        { id: 'vie-estudiantine', index: 5 }, // VIE ÉTUDIANTE
+        { id: 'services', index: 6 }          // SERVICE À LA COMMUNAUTÉ
+    ];
+
+    allNavItems.forEach((item) => {
+        const link = item.querySelector('.nav-link');
+        if (link) {
+            link.addEventListener('click', (e) => {
+                // Si l'élément a un sous-menu, on bascule son affichage
+                if (item.classList.contains('has-dropdown')) {
+                    item.classList.toggle('hover-open');
+                }
+                allNavItems.forEach(i => {
+                    i.classList.remove('active-nav');
+                    if (i !== item) i.classList.remove('hover-open');
+                });
+                item.classList.add('active-nav');
+            });
+        }
+    });
+
+    // Fermer les dropdowns ouverts au clic à l'extérieur
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.nav-item')) {
+            allNavItems.forEach(i => i.classList.remove('hover-open'));
+        }
+    });
+
+    // Scrollspy : Met à jour dynamiquement l'onglet actif (bleu) pendant le scroll
+    let isScrolling = false;
+    window.addEventListener('scroll', () => {
+        if (!isScrolling) {
+            window.requestAnimationFrame(() => {
+                const scrollPos = window.scrollY + 160;
+                let activeIdx = 0;
+
+                for (let i = scrollMap.length - 1; i >= 0; i--) {
+                    const sec = document.getElementById(scrollMap[i].id);
+                    if (sec && scrollPos >= sec.offsetTop) {
+                        activeIdx = scrollMap[i].index;
+                        break;
+                    }
+                }
+
+                if (window.scrollY < 200) {
+                    activeIdx = 0;
+                }
+
+                allNavItems.forEach((item, idx) => {
+                    if (idx === activeIdx) {
+                        item.classList.add('active-nav');
+                    } else {
+                        item.classList.remove('active-nav');
+                    }
+                });
+
+                isScrolling = false;
+            });
+            isScrolling = true;
+        }
+    }, { passive: true });
 });

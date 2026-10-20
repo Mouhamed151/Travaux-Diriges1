@@ -224,27 +224,32 @@ button {
     transition: transform 0.25s ease, color 0.25s ease;
 }
 
-/* Menu Actif : ACCUEIL en bleu plein fond */
-.nav-item.active-nav .nav-link,
-.nav-item.nav-block-blue .nav-link-blue {
+/* Menu Actif : Fond bleu (#007ba2), texte blanc, flèche blanche */
+.nav-item.active-nav > .nav-link,
+.nav-item.active-nav .nav-link-blue {
     background-color: #007ba2;
     color: #ffffff;
     font-weight: 800;
-    padding: 0 18px;
 }
 
-.nav-item.active-nav:hover .nav-link {
+.nav-item.active-nav > .nav-link .nav-arrow {
+    color: #ffffff;
+}
+
+.nav-item.active-nav:hover > .nav-link {
     background-color: #00688a;
     color: #ffffff;
 }
 
-/* Au survol / scroll : N'importe quel menu prend un fond jaune/or plein avec texte blanc (Image 1) */
-.nav-item:not(.active-nav):hover > .nav-link {
+/* Au survol d'un élément non-actif : Fond jaune/or (#f5af26), texte blanc, flèche blanche (Image 1) */
+.nav-item:not(.active-nav):hover > .nav-link,
+.nav-item:not(.active-nav).hover-open > .nav-link {
     background-color: #f5af26;
     color: #ffffff;
 }
 
-.nav-item:not(.active-nav):hover .nav-arrow {
+.nav-item:not(.active-nav):hover .nav-arrow,
+.nav-item:not(.active-nav).hover-open .nav-arrow {
     color: #ffffff;
     transform: rotate(180deg);
 }
@@ -273,7 +278,12 @@ button {
     min-width: 320px;
 }
 
-.nav-item:hover > .dropdown-menu {
+.dropdown-menu.institution-dropdown {
+    min-width: 280px;
+}
+
+.nav-item:hover > .dropdown-menu,
+.nav-item.hover-open > .dropdown-menu {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
