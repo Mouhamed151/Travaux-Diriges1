@@ -100,12 +100,12 @@ button {
 .header-container {
     width: 100%;
     margin: 0;
-    padding: 0 0 0 24px;
+    padding: 0;
     height: 72px;
     display: flex;
     align-items: stretch;
     justify-content: space-between;
-    gap: 8px;
+    gap: 0;
 }
 
 /* Logo Group */
@@ -113,7 +113,7 @@ button {
     display: flex;
     align-items: center;
     flex-shrink: 0;
-    padding-right: 14px;
+    padding: 0 12px 0 16px;
 }
 
 .brand-link {
@@ -123,9 +123,9 @@ button {
 }
 
 .brand-image-logo {
-    height: 48px;
+    height: 42px;
     width: auto;
-    max-width: 250px;
+    max-width: 180px;
     object-fit: contain;
     display: block;
 }
@@ -199,23 +199,30 @@ button {
 .nav-link {
     display: flex;
     align-items: center;
-    gap: 5px;
-    padding: 0 11px;
+    gap: 4px;
+    padding: 0 7.5px;
     height: 100%;
     font-family: 'Montserrat', sans-serif;
-    font-size: 11.5px;
+    font-size: 11px;
     font-weight: 500;
     color: #111827;
     text-transform: uppercase;
-    letter-spacing: 0.2px;
+    letter-spacing: 0.1px;
     white-space: nowrap;
     text-decoration: none;
     transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-@media (min-width: 1360px) {
+@media (min-width: 1280px) {
     .nav-link {
-        padding: 0 13px;
+        padding: 0 10px;
+        font-size: 11.5px;
+    }
+}
+
+@media (min-width: 1440px) {
+    .nav-link {
+        padding: 0 12.5px;
         font-size: 12px;
     }
 }
@@ -224,12 +231,12 @@ button {
     transition: transform 0.25s ease, color 0.25s ease;
 }
 
-/* Menu Actif : Fond bleu (#007ba2), texte blanc, flèche blanche */
+/* Menu Actif : Fond bleu (#007ba2), texte blanc, flèche blanche (aucun gras conformément aux consignes) */
 .nav-item.active-nav > .nav-link,
 .nav-item.active-nav .nav-link-blue {
     background-color: #007ba2;
     color: #ffffff;
-    font-weight: 600;
+    font-weight: 500;
 }
 
 .nav-item.active-nav > .nav-link .nav-arrow {
@@ -345,11 +352,11 @@ button {
 .menu-action-group {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
     cursor: pointer;
     background: transparent;
     border: none;
-    padding: 0 16px;
+    padding: 0 10px;
     height: 72px;
     transition: background-color 0.2s ease;
 }
@@ -360,15 +367,15 @@ button {
 
 .menu-label-text {
     font-family: 'Montserrat', sans-serif;
-    font-size: 13.5px;
+    font-size: 13px;
     font-weight: 700;
     color: #111827;
     letter-spacing: 0.5px;
 }
 
 .menu-blue-circle {
-    width: 38px;
-    height: 38px;
+    width: 34px;
+    height: 34px;
     border-radius: 50%;
     background-color: #007ba2;
     display: flex;
@@ -384,20 +391,26 @@ button {
     transform: scale(1.05);
 }
 
-/* Bloc Bleu à droite avec Bouton Recherche Jaune (Exactement comme sur la capture) */
+/* Bloc Bleu à droite avec Bouton Recherche Jaune (Fidèle aux captures, jamais décalé hors écran) */
 .header-search-box {
     background-color: #007ba2;
     height: 72px;
-    width: 76px;
+    width: 54px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
 }
 
+@media (min-width: 1280px) {
+    .header-search-box {
+        width: 64px;
+    }
+}
+
 .util-search-round {
-    width: 38px;
-    height: 38px;
+    width: 34px;
+    height: 34px;
     border-radius: 50%;
     background-color: #f5af26;
     display: flex;
@@ -423,46 +436,6 @@ button {
     background: none;
     border: none;
     cursor: pointer;
-}
-
-/* Sous-barre Header avec lien CONTACT (Fidèle à la capture d'écran sous ACCUEIL) */
-.header-sub-bar {
-    width: 100%;
-    background-color: #ffffff;
-    border-bottom: 1px solid #f1f5f9;
-}
-
-.header-sub-container {
-    padding: 7px 24px 8px 196px;
-    display: flex;
-    align-items: center;
-}
-
-@media (max-width: 1200px) {
-    .header-sub-container {
-        padding: 7px 24px 8px 160px;
-    }
-}
-
-@media (max-width: 900px) {
-    .header-sub-container {
-        padding: 7px 20px;
-    }
-}
-
-.header-contact-link {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 13px;
-    font-weight: 700;
-    color: #111827;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    text-decoration: none;
-    transition: color 0.2s ease;
-}
-
-.header-contact-link:hover {
-    color: #007ba2;
 }
 
 /* ==============================================
@@ -1627,7 +1600,29 @@ button {
 /* ==========================================================================
    RESPONSIVE DESIGN (TABLETS & MOBILE)
    ========================================================================== */
-@media (max-width: 1024px) {
+@media (max-width: 1120px) {
+    .nav-link {
+        padding: 0 5px;
+        font-size: 10.5px;
+    }
+    .brand-image-logo {
+        height: 38px;
+        max-width: 155px;
+    }
+    .header-search-box {
+        width: 48px;
+    }
+    .util-search-round {
+        width: 32px;
+        height: 32px;
+    }
+    .menu-blue-circle {
+        width: 32px;
+        height: 32px;
+    }
+}
+
+@media (max-width: 991px) {
     .header-container {
         padding: 0 16px;
     }
