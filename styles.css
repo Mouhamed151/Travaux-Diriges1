@@ -100,7 +100,7 @@ button {
 .header-container {
     width: 100%;
     margin: 0;
-    padding: 0 24px;
+    padding: 0 0 0 24px;
     height: 72px;
     display: flex;
     align-items: stretch;
@@ -335,20 +335,21 @@ button {
 /* Header Utilities (Right side) */
 .header-utilities {
     display: flex;
-    align-items: center;
+    align-items: stretch;
     margin-left: auto;
     flex-shrink: 0;
+    gap: 0;
 }
 
-/* Bouton MENU avec cercle bleu hamburger (Fidèle à l'image 1 de www.unchk.sn) */
+/* Bouton MENU avec cercle bleu hamburger (Fidèle à la capture d'écran) */
 .menu-action-group {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     cursor: pointer;
     background: transparent;
     border: none;
-    padding: 0 4px;
+    padding: 0 16px;
     height: 72px;
     transition: background-color 0.2s ease;
 }
@@ -360,7 +361,7 @@ button {
 .menu-label-text {
     font-family: 'Montserrat', sans-serif;
     font-size: 13.5px;
-    font-weight: 600;
+    font-weight: 700;
     color: #111827;
     letter-spacing: 0.5px;
 }
@@ -374,13 +375,43 @@ button {
     align-items: center;
     justify-content: center;
     transition: all 0.2s ease;
-    box-shadow: 0 2px 6px rgba(0, 123, 162, 0.3);
+    box-shadow: 0 2px 6px rgba(0, 123, 162, 0.25);
 }
 
 .menu-action-group:hover .menu-blue-circle,
 .menu-action-group.is-open .menu-blue-circle {
     background-color: #005d7b;
     transform: scale(1.05);
+}
+
+/* Bloc Bleu à droite avec Bouton Recherche Jaune (Exactement comme sur la capture) */
+.header-search-box {
+    background-color: #007ba2;
+    height: 72px;
+    width: 76px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.util-search-round {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background-color: #f5af26;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.util-search-round:hover {
+    background-color: #e09818;
+    transform: scale(1.06);
 }
 
 /* Mobile Hamburger Toggle */

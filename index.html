@@ -145,23 +145,33 @@
                 </ul>
             </nav>
 
-            <!-- Utilitaires à droite : Bouton MENU uniquement (Fidèle au site officiel Image 1) -->
+            <!-- Utilitaires à droite : Bouton MENU et Bloc Recherche (Fidèle à la capture d'écran) -->
             <div class="header-utilities">
-                <!-- Bouton MENU avec texte et cercle bleu hamburger (Ouvre le méga-menu Image 2) -->
+                <!-- Bouton MENU avec texte et cercle bleu hamburger -->
                 <button class="menu-action-group" id="headerMenuBtn" aria-label="Menu principal" aria-expanded="false">
                     <span class="menu-label-text">MENU</span>
                     <span class="menu-blue-circle" id="menuCircleIcon">
-                        <svg class="menu-icon-bars" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <svg class="menu-icon-bars" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round">
                             <line x1="4" y1="7" x2="20" y2="7"></line>
-                            <line x1="4" y1="12" x2="20" y2="12"></line>
-                            <line x1="8" y1="17" x2="20" y2="17"></line>
+                            <line x1="4" y1="12" x2="16" y2="12"></line>
+                            <line x1="4" y1="17" x2="11" y2="17"></line>
                         </svg>
-                        <svg class="menu-icon-close" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                        <svg class="menu-icon-close" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
                             <line x1="18" y1="6" x2="6" y2="18"></line>
                             <line x1="6" y1="6" x2="18" y2="18"></line>
                         </svg>
                     </span>
                 </button>
+
+                <!-- Bloc Bleu Pinned à droite avec Bouton Recherche (Cercle Jaune avec Loupe - Image exacte) -->
+                <div class="header-search-box">
+                    <button class="util-btn util-search-round" title="Rechercher sur le site" id="searchBtn" aria-label="Recherche">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="7.5"></circle>
+                            <line x1="16.5" y1="16.5" x2="21.5" y2="21.5"></line>
+                        </svg>
+                    </button>
+                </div>
             </div>
         </div>
 
