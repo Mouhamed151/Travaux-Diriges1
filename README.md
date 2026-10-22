@@ -3,7 +3,7 @@
 Ce projet consiste en l'intégration fidèle et complète de la page d'accueil officielle de l'**Université numérique Cheikh Hamidou KANE (UN-CHK)** (`unchk.sn`).
 
 ## 🛠️ Technologies utilisées
-- **HTML5** : Structure sémantique complète, accessible et optimisée SEO.
+- **HTML5** : Structure sémantique complète.
 - **CSS3 Vanilla** : Design responsive, variables CSS personnalisées, effets visuels modernes (fondus, animations, typographies harmonieuses).
 - **JavaScript Vanilla** : Carrousel plein écran fluide avec défilement automatique, pause au survol, flèches de navigation flottantes et pagination par puces.
 
