@@ -364,4 +364,58 @@ document.addEventListener('DOMContentLoaded', () => {
             isScrolling = true;
         }
     }, { passive: true });
+
+    // ----------------------------------------------------
+    // Gestion du popup promotionnel (Master LEPRAD)
+    // ----------------------------------------------------
+    const promoModal = document.getElementById('promoPopupModal');
+    const popupCloseBtn = document.getElementById('popupCloseBtn');
+
+    const openPromoPopup = () => {
+        if (!promoModal) return;
+        promoModal.classList.add('is-active');
+        promoModal.setAttribute('aria-hidden', 'false');
+    };
+
+    const closePromoPopup = () => {
+        if (!promoModal) return;
+        promoModal.classList.remove('is-active');
+        promoModal.setAttribute('aria-hidden', 'true');
+    };
+
+    if (promoModal && popupCloseBtn) {
+        // Ouverture automatique au chargement après un léger délai
+        setTimeout(() => {
+            openPromoPopup();
+        }, 400);
+
+        // Fermeture par le bouton croix
+        popupCloseBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            closePromoPopup();
+        });
+
+        // Fermeture en cliquant sur l'arrière-plan sombre (overlay)
+        promoModal.addEventListener('click', (e) => {
+            if (e.target === promoModal) {
+                closePromoPopup();
+            }
+        });
+
+        // Fermeture avec la touche Échap
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && promoModal.classList.contains('is-active')) {
+                closePromoPopup();
+            }
+        });
+
+        // Si l'utilisateur clique sur le lien du banner, fermer la modal
+        const promoLink = promoModal.querySelector('.popup-link');
+        if (promoLink) {
+            promoLink.addEventListener('click', () => {
+                closePromoPopup();
+            });
+        }
+    }
 });
+

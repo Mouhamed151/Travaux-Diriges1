@@ -525,6 +525,61 @@ button {
     transform: translateX(3px);
 }
 
+/* Boutons d'actions en bas du méga-menu (Projets, Plan Stratégique, Recrutement) */
+.mega-menu-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+    padding: 32px 40px 38px 40px;
+    background-color: #ffffff;
+    border-top: 1px solid #edf2f7;
+}
+
+.mega-action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex: 1;
+    max-width: 320px;
+    height: 52px;
+    padding: 0 24px;
+    color: #ffffff;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+    border-radius: 2px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mega-action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.16);
+    filter: brightness(1.06);
+    color: #ffffff;
+}
+
+.mega-btn-projets {
+    background-color: #007ba2;
+}
+
+.mega-btn-plan {
+    background-color: #e5801a;
+}
+
+.mega-btn-recrutement {
+    background-color: #262626;
+}
+
+.mega-btn-icon {
+    display: inline-block;
+    flex-shrink: 0;
+}
+
 /* Search Bar Dropdown Overlay (Fidèle à la capture d'écran : Rechercher...) */
 .search-overlay {
     position: absolute;
@@ -916,14 +971,20 @@ button {
     display: flex;
     flex-direction: column;
     background: var(--bg-white);
-    transition: var(--transition-smooth);
+    border-radius: 6px;
+    overflow: hidden;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    cursor: pointer;
+}
+
+.news-card:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
 }
 
 .news-thumb-wrapper {
     width: 100%;
     height: 270px;
     overflow: hidden;
-    border-radius: 6px;
     background-color: #f1f5f9;
 }
 
@@ -935,7 +996,7 @@ button {
 }
 
 .news-card:hover .news-image {
-    transform: scale(1.04);
+    transform: scale(1.03);
 }
 
 .grayscale-image {
@@ -943,24 +1004,30 @@ button {
 }
 
 .news-body {
-    padding: 18px 4px 10px;
+    padding: 22px 20px 20px;
     display: flex;
     flex-direction: column;
     flex: 1;
+    background-color: #ffffff;
+    transition: background-color 0.3s ease;
+}
+
+.news-card:hover .news-body {
+    background-color: #f7b32b;
 }
 
 .news-card-title {
     font-family: 'Outfit', sans-serif;
-    font-size: 15px;
+    font-size: 15.5px;
     font-weight: 800;
     color: #111827;
     line-height: 1.35;
     margin-bottom: 8px;
-    transition: var(--transition-fast);
+    transition: color 0.25s ease;
 }
 
 .news-card:hover .news-card-title {
-    color: var(--unchk-teal);
+    color: #111827;
 }
 
 .news-date {
@@ -968,6 +1035,11 @@ button {
     color: #94a3b8;
     margin-bottom: 12px;
     display: block;
+    transition: color 0.25s ease;
+}
+
+.news-card:hover .news-date {
+    color: rgba(17, 24, 39, 0.6);
 }
 
 .news-excerpt {
@@ -979,6 +1051,11 @@ button {
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    transition: color 0.25s ease;
+}
+
+.news-card:hover .news-excerpt {
+    color: #1f2937;
 }
 
 .news-read-more {
@@ -998,12 +1075,12 @@ button {
     transition: transform 0.25s ease;
 }
 
-.news-read-more:hover {
-    color: var(--unchk-orange);
+.news-card:hover .news-read-more {
+    color: #111827;
 }
 
-.news-read-more:hover .news-arrow-icon {
-    transform: translateX(4px);
+.news-card:hover .news-read-more .news-arrow-icon {
+    transform: translateX(5px);
 }
 
 /* Communiqués Column */
@@ -1133,19 +1210,22 @@ button {
 /* Light Gray Header Ribbon */
 .stats-ribbon {
     background-color: #eaedf0;
-    padding: 14px 24px;
+    padding: 32px 0;
+    width: 100%;
     text-align: left;
 }
 
 .stats-ribbon-title {
     max-width: 1320px;
     margin: 0 auto;
+    padding: 0 24px;
     font-family: 'Outfit', sans-serif;
-    font-size: 22px;
+    font-size: 34px;
     font-weight: 900;
     color: #111827;
     letter-spacing: 0.5px;
     text-transform: uppercase;
+    line-height: 1.2;
 }
 
 .stats-content-wrap {
@@ -1322,13 +1402,14 @@ button {
    ========================================================================== */
 .campus-life-section {
     background-color: var(--bg-white);
+    width: 100%;
 }
 
 .campus-life-grid {
     display: grid;
     grid-template-columns: 1.15fr 0.95fr 1.15fr;
     width: 100%;
-    min-height: 380px;
+    min-height: 480px;
 }
 
 .campus-block {
@@ -1338,62 +1419,88 @@ button {
 
 /* Left Green Block */
 .block-green {
-    background-color: var(--unchk-green);
+    background-color: #0b9e43;
     color: white;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 40px 30px 40px 48px;
-    gap: 20px;
+    position: relative;
+    overflow: hidden;
+    min-height: 480px;
+}
+
+.block-green::before {
+    content: '';
+    position: absolute;
+    width: 440px;
+    height: 440px;
+    border-radius: 50%;
+    background-color: #088437;
+    left: 4%;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+    pointer-events: none;
 }
 
 .block-green-content {
     display: flex;
     flex-direction: column;
-    gap: 24px;
-    z-index: 2;
+    justify-content: space-between;
+    height: 100%;
+    padding: 48px 36px 44px 44px;
+    position: relative;
+    z-index: 3;
+    pointer-events: none;
 }
 
 .campus-title {
     font-family: 'Outfit', sans-serif;
-    font-size: 44px;
-    font-weight: 900;
-    line-height: 1.1;
+    font-size: 46px;
+    font-weight: 800;
+    line-height: 1.05;
     letter-spacing: -0.5px;
+    color: #ffffff;
+    margin: 0;
+    pointer-events: auto;
 }
 
 .campus-cta-link {
     font-family: 'Montserrat', sans-serif;
-    font-size: 14.5px;
+    font-size: 15px;
     font-weight: 700;
-    color: white;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    border-bottom: 2px solid white;
-    padding-bottom: 4px;
+    color: #ffffff;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 2px;
+    display: inline-block;
     width: fit-content;
-    transition: var(--transition-fast);
+    pointer-events: auto;
+    transition: opacity var(--transition-fast);
 }
 
 .campus-cta-link:hover {
     opacity: 0.85;
-    transform: translateX(4px);
 }
 
 .block-green-photo {
-    width: 170px;
-    height: 240px;
-    border-radius: 12px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    pointer-events: none;
     overflow: hidden;
-    box-shadow: var(--shadow-lg);
-    flex-shrink: 0;
 }
 
 .campus-student-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: 106%;
+    max-width: 85%;
+    object-fit: contain;
+    object-position: bottom right;
+    display: block;
+    filter: drop-shadow(-4px 8px 12px rgba(0, 0, 0, 0.15));
 }
 
 /* Center Block (Split: Lavender top, Yellow bottom) */
@@ -1401,17 +1508,62 @@ button {
     display: flex;
     flex-direction: column;
     height: 100%;
+    min-height: 480px;
 }
 
 .center-top-accent {
-    height: 48%;
-    background-color: var(--unchk-lavender-light);
+    height: 50%;
+    background-color: #cbd4f8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 24px;
+}
+
+.center-top-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 22px;
+}
+
+.coupe-recteur-link {
+    font-family: 'Outfit', sans-serif;
+    font-size: 19px;
+    font-weight: 700;
+    color: #1a1a2e;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: transform var(--transition-fast), color var(--transition-fast);
+}
+
+.coupe-recteur-link svg {
+    transition: transform var(--transition-fast);
+}
+
+.coupe-recteur-link:hover {
+    color: var(--unchk-teal);
+}
+
+.coupe-recteur-link:hover svg {
+    transform: translateX(4px);
+}
+
+.campus-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background-color: #0b9e43;
+    display: inline-block;
 }
 
 .center-bottom-yellow {
-    height: 52%;
-    background-color: var(--unchk-yellow);
-    padding: 32px 36px;
+    height: 50%;
+    background-color: #f7b32b;
+    padding: 36px 40px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1419,23 +1571,29 @@ button {
 
 .community-slogan {
     font-family: 'Outfit', sans-serif;
-    font-size: 21px;
+    font-size: 26px;
     font-weight: 800;
     color: #111827;
-    line-height: 1.35;
-    letter-spacing: -0.2px;
+    line-height: 1.25;
+    letter-spacing: -0.3px;
+    max-width: 360px;
 }
 
 /* Right Block (Sports Team Photo) */
 .block-right-photo {
     background-color: #f1f5f9;
+    height: 100%;
+    min-height: 480px;
+    overflow: hidden;
 }
 
 .sports-team-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.4s ease;
+    object-position: center;
+    display: block;
+    transition: transform 0.5s ease;
 }
 
 .block-right-photo:hover .sports-team-img {
@@ -1716,6 +1874,18 @@ button {
         padding: 24px 20px;
     }
 
+    .mega-menu-actions {
+        flex-direction: column;
+        gap: 12px;
+        padding: 20px 20px 28px 20px;
+    }
+
+    .mega-action-btn {
+        width: 100%;
+        max-width: 100%;
+        height: 48px;
+    }
+
     .news-grid {
         grid-template-columns: 1fr 1fr;
     }
@@ -1730,10 +1900,23 @@ button {
 
     .campus-life-grid {
         grid-template-columns: 1fr;
+        min-height: auto;
     }
 
     .block-green {
-        padding: 32px 24px;
+        min-height: 380px;
+    }
+
+    .block-green-photo {
+        max-width: 70%;
+    }
+
+    .block-center-split {
+        min-height: 340px;
+    }
+
+    .block-right-photo {
+        min-height: 340px;
     }
 
     .footer-links-container {
@@ -1787,6 +1970,15 @@ button {
         grid-column: span 1;
     }
 
+    .stats-ribbon {
+        padding: 22px 0;
+    }
+
+    .stats-ribbon-title {
+        font-size: 24px;
+        padding: 0 16px;
+    }
+
     .stats-cards-grid {
         grid-template-columns: 1fr;
     }
@@ -1815,3 +2007,115 @@ button {
         text-align: center;
     }
 }
+
+/* ==========================================================================
+   POPUP MODAL PROMOTIONNEL (Master LEPRAD)
+   ========================================================================== */
+.popup-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.65);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    padding: 20px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.popup-modal-overlay.is-active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.popup-modal-content {
+    background-color: #ffffff;
+    border-radius: 4px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.45);
+    position: relative;
+    width: 100%;
+    max-width: 565px;
+    padding: 28px 20px 20px 20px;
+    transform: scale(0.94);
+    transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.popup-modal-overlay.is-active .popup-modal-content {
+    transform: scale(1);
+}
+
+.popup-close-btn {
+    position: absolute;
+    top: 6px;
+    right: 8px;
+    width: 32px;
+    height: 32px;
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    line-height: 1;
+    color: #888888;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease, transform 0.2s ease;
+    font-family: Arial, sans-serif;
+}
+
+.popup-close-btn:hover {
+    color: #111111;
+    transform: scale(1.15);
+}
+
+.popup-close-btn:focus-visible {
+    outline: 2px solid var(--unchk-teal);
+    border-radius: 3px;
+}
+
+.popup-body {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-link {
+    display: block;
+    width: 100%;
+    text-decoration: none;
+    outline: none;
+    transition: opacity 0.2s ease;
+}
+
+.popup-link:hover {
+    opacity: 0.96;
+}
+
+.popup-banner-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 2px;
+}
+
+@media (max-width: 640px) {
+    .popup-modal-content {
+        max-width: 95%;
+        padding: 26px 12px 12px 12px;
+    }
+
+    .popup-close-btn {
+        top: 4px;
+        right: 6px;
+        font-size: 22px;
+        width: 28px;
+        height: 28px;
+    }
+}
+
